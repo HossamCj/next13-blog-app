@@ -4,6 +4,14 @@ import getFormattedDate from "@/lib/getFormattedDate";
 import {getSortedPostsData, getPostData} from "@/lib/posts_lib";
 import {notFound} from "next/navigation";
 
+export function generateStaticParams() {
+    const posts = getSortedPostsData(); // deduoed!
+
+    return posts.map((post) => ({
+        pistId: post.id,
+    }));
+}
+
 export function generateMetadata({params}: {params: {postId: string}}) {
     const posts = getSortedPostsData(); // Deduped
     const {postId} = params;
